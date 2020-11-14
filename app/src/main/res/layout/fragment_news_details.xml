@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="NewsItemData"
+            type="com.example.mynewsapp.data.NewsItem" />
+
+    </data>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="?attr/background_color"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.NewsDetailsFragment">
+
+
+            <ImageView
+                glide_url="@{NewsItemData.newsImg}"
+                android:scaleType="centerCrop"
+                android:id="@+id/details_img_news"
+                android:layout_width="0dp"
+                android:layout_height="210dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <ImageView
+                glide_circular="@{NewsItemData.userImage}"
+                android:id="@+id/details_img_user"
+                android:layout_width="49dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                app:layout_constraintBottom_toBottomOf="@id/details_img_news" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_img_news"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:text="@{NewsItemData.title}"
+                android:textColor="?attr/text_color"
+                android:textSize="26sp"
+                android:lineSpacingExtra="4sp"
+                android:id="@+id/details_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_img_user" />
+
+            <TextView
+                android:text="@{NewsItemData.username}"
+                android:textColor="@color/blue"
+                android:id="@+id/details_username_data"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_title" />
+
+            <!--we need to toggle fav image button on the state of the news item
+            we check if item is saved by user
+            if it is checked we change the fav img color to red
+            if it is not we set it to gray color....
+            to that i will create a custom adapter-->
+            <ImageView
+                set_checked="@{NewsItemData.fav}"
+                android:id="@+id/details_img_fav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_baseline_favorite_24"
+                app:layout_constraintBottom_toBottomOf="@+id/details_username_data"
+                app:layout_constraintStart_toEndOf="@+id/details_username_data"
+                app:layout_constraintTop_toTopOf="@+id/details_username_data" />
+
+            <TextView
+                android:text="@{NewsItemData.content}"
+                android:textColor="?attr/text_color"
+                android:textSize="36sp"
+                android:id="@+id/details_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_username_data" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</layout>
